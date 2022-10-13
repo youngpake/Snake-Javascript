@@ -4,18 +4,20 @@ import { outsideGrid } from './grid.js'
 
 let lastRenderTime = 0
 let gameOver = false
+let isPaused = false
 const gameBoard = document.getElementById('game-board')
 
 function main(currentTime) {
-
   if (gameOver) {
     if (confirm('You lost. Press ok to restart.')) {
       window.location = '/'
     }
     return
   }
-
-  window.requestAnimationFrame(main)
+  
+  if (isPaused == true)
+  {return}
+  window.requestAnimationFrame(main) /* do another loop */
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
   if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
 
@@ -25,12 +27,37 @@ function main(currentTime) {
   draw()
 }
 
-window.requestAnimationFrame(main)
+if (isPaused == false){
+  window.requestAnimationFrame(main)
+}
+
+window.addEventListener('keydown', e => {
+  switch (e.key) {
+    case 'p':
+      if (isPaused == true){ /* switch to live game */
+        isPaused = false
+        console.log("running")
+        window.requestAnimationFrame(main)
+        document.getElementById("pause-screen").style.visibility="hidden"
+        document.getElementById("pause-screen").style.animation = "none";
+        break
+      } 
+      if (isPaused == false){ /* switch to paused game */
+        isPaused = true
+        console.log("paused")
+        document.getElementById("pause-screen").style.animation = "fadeIn 1s";
+        document.getElementById("pause-screen").style.visibility="visible"
+        break
+      }
+      break}})
+
+window.requestAnimationFrame(main) /* start loop */
 
 function update() {
   updateSnake()
   updateFood()
   checkDeath()
+  isPaused
 }
 
 function draw() {

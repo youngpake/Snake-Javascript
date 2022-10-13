@@ -8,7 +8,23 @@
     <title>Snake</title>
 </head>
 <script src="game.js" defer type="module"></script>
+<script>
+    function start(){
+  document.getElementById("start-screen").style.visibility= "hidden";
+}
+</script>
 <body>
+    <div onclick="start()" id="start-screen">
+        <h1>SNAKE 3<br><br><br><h3>click to continue</h3></h1> <!--sorry-->
+    </div>
+
+    <div id="pause-screen">
+        <ul>
+            <li style="font-size: 40px;">PAUSED</li>
+            <li style="font-size: 18px;">Share this game</li>
+            <li style="color: red; font-size: 16px;"><a href="/index.html">Restart</a></li>
+        </ul>
+    </div>
     <div class="scorecounterContainer">
         <div id="LEVELUP" class="levelUp">Level Up!</div>
     <h2 id="scorecounter">Level: 1 || Score: 0</h2>
