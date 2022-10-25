@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Snake</title>
 </head>
 <script src="game.js" defer type="module"></script>
@@ -21,6 +22,9 @@
     <div id="pause-screen">
         <ul>
             <li style="font-size: 40px;">PAUSED</li>
+            <li style="font-size: 18px;"><button onclick="decrease_speed()" id="minus">-</button> Speed <span id="SNAKE_SPEED">5 </span><button onclick="increase_speed()" id="plus">+</button><br>
+
+            </li>
             <li style="font-size: 18px;">Share this game</li>
             <li style="color: red; font-size: 16px;"><a href="/index.html">Restart</a></li>
         </ul>
